@@ -1,0 +1,22 @@
+{
+  "name": "webpack-react-starter",
+  "version": "1.0.0",
+  "description": "React starter",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean-dist": "rm -f -r -d dist",
+    "build": "yarn run clean-dist && webpack -p --config=config/webpack/prod.js",
+    "start-dev": "webpack-dev-server --config=config/webpack/dev.js"
+  },
+  "author": "Sergey Grigorev (xors.nn@gmail.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-typescript": "^7.9.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
