@@ -1,58 +1,91 @@
 // shared config (dev and prod)
-const {resolve} = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = () => {
   return {
     output: {
-      path: resolve('../../assets/bundles/'),
-      filename: '[name]-[hash].js',
+      path: resolve("../../assets/bundles/"),
+      filename: "[name]-[hash].js"
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
-    context: resolve(__dirname, '../../src'),
+    context: resolve(__dirname, "../../src"),
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: ['babel-loader', 'source-map-loader'],
+          use: ["babel-loader"]
         },
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          use: ['babel-loader'],
+          use: ["babel-loader"]
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        },
-        {
-          test: /\.scss$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: true,
+                modules: {
+                  namedExport: true
+                }
+              }
+            },
+            {
+              loader: "css-loader",
+              options: {
+                esModule: true,
+                modules: {
+                  namedExport: true
+                }
+              }
+            }
+          ]
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
-          loaders: [
-            'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
-            'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
-          ],
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                hash: "sha512",
+                digest: "hex",
+                name: "img/[hash].[ext]"
+              }
+            },
+            { loader: "image-webpack-loader", options: { bypassOnDebug: true } }
+            // "image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false"
+          ]
         },
         {
           test: /\.(eot|woff|ttf|svg|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file-loader?limit=10000',
-        },
-      ],
+          use: {
+            loader: "file-loader",
+            options: {
+              limit: 10000
+            }
+          }
+        }
+      ]
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: 'index.html',
+      new MiniCssExtractPlugin({
+        filename: "css/[name].[hash].min.css",
+        chunkFilename: "css/[id].[hash].css",
+        ignoreOrder: false // Enable to remove warnings about conflicting order
       }),
+      new HtmlWebpackPlugin({
+        template: "index.html"
+      })
     ],
     performance: {
-      hints: false,
-    },
+      hints: false
+    }
   };
 };
