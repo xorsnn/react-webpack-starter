@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+
+{% include 'docker-compose/include/docker-compose-db.yml' %}
+
+{% include 'docker-compose/include/docker-compose-nginx.yml' %}
+
+{% include 'docker-compose/include/docker-compose-frontend.yml' %}
+
+{% include 'docker-compose/include/docker-compose-backend.yml' %}
+
+networks:
+  default:
+    external:
+      name: proxynet

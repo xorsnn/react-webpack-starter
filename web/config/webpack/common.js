@@ -2,13 +2,10 @@
 const { resolve } = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleTracker = require("webpack-bundle-tracker");
 
 module.exports = () => {
   return {
-    output: {
-      path: resolve("../../assets/bundles/"),
-      filename: "[name]-[hash].js"
-    },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
@@ -82,6 +79,9 @@ module.exports = () => {
       }),
       new HtmlWebpackPlugin({
         template: "index.html"
+      }),
+      new BundleTracker({
+        filename: resolve(__dirname, "../../stats/webpack-stats.json")
       })
     ],
     performance: {

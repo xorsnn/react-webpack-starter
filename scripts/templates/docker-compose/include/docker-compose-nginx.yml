@@ -1,0 +1,13 @@
+  {{ PROJECT_NAME }}_nginx:
+    restart: "no"
+    image: nginx:1.15.5
+    container_name: {{ PROJECT_NAME }}_nginx
+    volumes:
+      - ../../scripts/generated/config/nginx/site.conf:/etc/nginx/conf.d/nginx-locations-dev-docker.conf:ro
+      - ../../lu-data/nginx-logs:/var/log/nginx
+    environment:
+      - VIRTUAL_HOST={{ VIRTUAL_HOST }}
+      - VIRTUAL_PORT=80
+    links:
+      - {{ PROJECT_NAME }}_site:site
+      - {{ PROJECT_NAME }}_frontend_dev:lugati_frontend_dev

@@ -1,0 +1,21 @@
+  {{ PROJECT_NAME }}_site:
+    restart: "no"
+    container_name: {{ PROJECT_NAME }}_site
+    build: .
+    command: bash -c "python manage.py runserver 0.0.0.0:80"
+    depends_on:
+      - {{ PROJECT_NAME }}_db
+    volumes:
+      - ../../backend:/app/core
+      - ../../web:/app/web
+      - ../../web/src/openapi:/app/openapi
+      - ../../DATA:/app/DATA
+    links:
+      - {{ PROJECT_NAME }}_db:db
+    environment:
+      - DEBUG={{DEBUG}}
+      - DATABASE_NAME={{DATABASE_NAME}}
+      - DATABASE_USER={{DATABASE_USER}}
+      - DATABASE_PASSWORD={{DATABASE_PASSWORD}}
+      - POSTGRES_HOST=db
+      - DJANGO_SECRET_KEY={{DJANGO_SECRET_KEY}}
