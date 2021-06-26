@@ -1,0 +1,13 @@
+  {{ PROJECT_NAME }}_frontend_dev:
+    restart: "no"
+    container_name: {{ PROJECT_NAME }}_frontend-dev
+    image: node:14.3
+    command: bash -c "cd /app/frontend && npm install && node server.js"
+    volumes:
+      - ../../web:/app/frontend
+    environment:
+      - EXTERNAL_HOST={{ EXTERNAL_HOST }}
+      - EXTERNAL_PROTOCOL={{ EXTERNAL_PROTOCOL }}
+    ports:
+      - "3000:3000"
+      - "8080:8080"

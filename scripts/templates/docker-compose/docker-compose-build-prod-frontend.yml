@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  {{ PROJECT_NAME }}_build_frontend_prod:
+    restart: "no"
+    container_name: {{ PROJECT_NAME }}_build-frontent-prod
+    image: node:14.3
+    volumes:
+      - ../../web:/app/frontend
+    environment:
+      - EXTERNAL_HOST={{ EXTERNAL_HOST }}
+      - EXTERNAL_PROTOCOL={{ EXTERNAL_PROTOCOL }}

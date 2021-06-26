@@ -9,7 +9,8 @@
     "@babel/proposal-object-rest-spread",
     ["module-resolver", {
         "alias": {
-          "img": "./src/img"
+          "img": "./src/img",
+          "client": "./src/openapi/client"
         }
       }]
   ]

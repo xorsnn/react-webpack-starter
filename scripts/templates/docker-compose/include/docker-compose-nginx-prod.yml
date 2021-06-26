@@ -1,0 +1,13 @@
+  {{ PROJECT_NAME }}_nginx_prod:
+    restart: "no"
+    image: nginx:1.15.5
+    container_name: {{ PROJECT_NAME }}_nginx_prod
+    volumes:
+      - ../../scripts/generated/config/nginx/site-prod.conf:/etc/nginx/conf.d/nginx-locations-prod-docker.conf:ro
+      - ../../lu-data/nginx-logs:/var/log/nginx
+      - ../../web/dist:/usr/share/nginx/html/site/static/bundles:ro
+    environment:
+      - VIRTUAL_HOST={{ VIRTUAL_HOST }}
+      - VIRTUAL_PORT=80
+    links:
+      - {{ PROJECT_NAME }}_site_prod:site
