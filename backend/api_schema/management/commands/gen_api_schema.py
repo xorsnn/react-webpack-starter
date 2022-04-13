@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         generator = SchemaGenerator(
-            title='Coaching API',
+            title='API',
             version='0.0.1',
         )
         schema = generator.get_schema()

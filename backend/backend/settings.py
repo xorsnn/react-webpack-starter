@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'webpack_loader',
-    'coaching',
+    'api_schema',
 ]
 
 MIDDLEWARE = [
@@ -142,20 +142,6 @@ WEBPACK_LOADER = {
         ),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
-        #  'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
         'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
     }
 }
-
-#  WEBPACK_LOADER = {
-#      'DEFAULT': {
-#          'BUNDLE_DIR_NAME': 'dist/',
-#          'STATS_FILE': os.path.join(
-#              BASE_DIR,
-#              '..',
-#              'web',
-#              'stats',
-#              'webpack-stats.json'
-#          )
-#      }
-#  }

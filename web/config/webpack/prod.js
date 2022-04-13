@@ -8,13 +8,13 @@ const commonConfig = require("./common");
 module.exports = merge(commonConfig(), {
   mode: "production",
   entry: {
-    index: "./index.tsx"
+    index: "./src/index.tsx",
   },
   output: {
     filename: "js/[name].[hash].min.js",
     path: resolve(__dirname, "../../dist"),
-    publicPath: "/static/bundles/"
+    publicPath: "/static/bundles/",
   },
   devtool: "source-map",
-  plugins: []
+  plugins: [],
 });
