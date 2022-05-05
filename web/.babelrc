@@ -10,16 +10,17 @@
         "regenerator": true
       }
     ],
-    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
     "@babel/proposal-object-rest-spread",
     "@babel/plugin-transform-for-of",
     "@babel/plugin-transform-strict-mode",
     ["module-resolver", {
         "alias": {
-          "img": "./src/img",
-          "client": "./src/openapi/client",
-          "components": "./src/components",
-        }
-      }]
+        "img": "./src/img",
+        "client": "./src/openapi/client",
+        "components": "./src/components"
+      }
+    }]
   ]
 }

@@ -3,6 +3,7 @@ const { merge } = require("webpack-merge");
 const webpack = require("webpack");
 const { resolve } = require("path");
 const commonConfig = require("./common");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const externalHost = process.env.EXTERNAL_HOST || "localhost";
 
@@ -31,8 +32,16 @@ module.exports = merge(commonConfig(), {
       "Access-Control-Allow-Headers":
         "X-Requested-With, content-type, Authorization",
     },
+  static: {
+      directory: resolve(__dirname, '../../dist'),
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // enable HMR globally
+    new HtmlWebpackPlugin(
+  {
+        template: "./src/index.html",
+  }
+    ),
   ],
 });

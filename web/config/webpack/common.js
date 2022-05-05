@@ -1,6 +1,5 @@
 // shared config (dev and prod)
 const { resolve } = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleTracker = require("webpack-bundle-tracker");
 
@@ -71,9 +70,6 @@ module.exports = () => {
         filename: "css/[name].[hash].min.css",
         chunkFilename: "css/[id].[hash].css",
         ignoreOrder: false, // Enable to remove warnings about conflicting order
-      }),
-      new HtmlWebpackPlugin({
-        template: "./src/index.html",
       }),
       new BundleTracker({
         filename: resolve(__dirname, "../../stats/webpack-stats.json"),
