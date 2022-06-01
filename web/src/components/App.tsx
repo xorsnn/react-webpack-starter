@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as styles from "./App.css";
+import * as React from 'react';
+import * as styles from './App.css';
 
-import testImg from "img/test-image.jpg";
+import testImg from 'img/test-image.jpg';
 
 export const App = () => {
   return (
